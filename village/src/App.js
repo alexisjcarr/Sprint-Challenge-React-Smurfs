@@ -1,23 +1,12 @@
 import React, { Component } from "react";
 import axios from "axios";
-import { Route, NavLink } from "react-router-dom";
-import styled from "styled-components";
+import { Route } from "react-router-dom";
 
 import "./App.css";
+import { StyledNav, FlexNav } from "./AppStyles";
 import SmurfForm from "./components/SmurfForm";
 import Smurfs from "./components/Smurfs";
-
-const StyledNav = styled(NavLink)`
-  margin: 10px;
-  color: black;
-  &:focus, &:hover, &:visited, &:link, &:active {
-      text-decoration: none;
-`;
-
-const FlexNav = styled.div`
-    display: flex;
-    justify-content: center;  
-`;
+import OneSmurf from "./components/OneSmurf";
 
 class App extends Component {
   constructor(props) {
@@ -56,7 +45,6 @@ class App extends Component {
       <div className="App">
         <FlexNav>
           <StyledNav to="/">Home</StyledNav>
-          <br />
           <StyledNav to="/smurf-form">Smurf Form</StyledNav>
         </FlexNav>
         <Route
@@ -70,6 +58,11 @@ class App extends Component {
           exact
           path="/"
           render={props => <Smurfs {...props} smurfs={this.state.smurfs} />}
+        />
+        <Route 
+          exact 
+          path="/smurfs/:id" 
+          render={props => <OneSmurf {...props} smurfs={this.state.smurfs} />} 
         />
       </div>
     );

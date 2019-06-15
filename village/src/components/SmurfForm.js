@@ -12,8 +12,8 @@ class SmurfForm extends Component {
 
   addSmurf = event => {
     event.preventDefault();
-    // add code to create the smurf using the api
-
+    event.persist();
+    this.props.addNewSmurf(this.state)
     this.setState({
       name: '',
       age: '',
